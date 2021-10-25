@@ -2,6 +2,7 @@
 
 #![allow(unused_variables, dead_code, unused_assignments)]
 
+mod cap_07_restaurant;
 mod cap_12_minigrep;
 mod cap_13_01_closures;
 mod cap_13_02_iterators;
@@ -32,6 +33,7 @@ fn main() {
   match module_arg {
     Module::Minigrep => cap_12_minigrep::run(),
     Module::NoModuleArg => {
+      cap_07_restaurant::run();
       cap_13_01_closures::run();
       cap_13_02_iterators::iterators::run();
       cap_13_03_improving_io::run();
