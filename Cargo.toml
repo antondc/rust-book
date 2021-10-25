@@ -1,0 +1,5 @@
+[package]
+name = "rust-book-examples"
+version = "0.1.0"
+authors = ["Antonio Diaz <hello@antoniodiaz.me>"]
+edition = "2018"
