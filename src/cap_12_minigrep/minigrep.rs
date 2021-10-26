@@ -9,7 +9,7 @@ pub struct Config {
 }
 
 impl Config {
-  pub fn new(args: &[String]) -> Result<Self, &'static str> {
+  pub fn new(args: &[String]) -> Result<Self, &str> {
     if args.len() < 4 {
       return Err("not enough arguments");
     }
@@ -71,80 +71,6 @@ pub fn search_case_insensitive<'a>(query: &str, contents: &'a str) -> Vec<&'a st
 #[cfg(test)]
 mod tests {
   use super::*;
-
-  #[test]
-  fn config_returns_config_object() -> Result<(), String> {
-    let args = vec![
-      String::from("test"),
-      String::from("minigrep"),
-      String::from("the"),
-      String::from("poem.txt"),
-    ];
-    let result = Config::new(args.as_slice());
-
-    assert!(result.is_ok());
-
-    let config = result?;
-
-    assert_eq!(config.query, "the");
-    assert_eq!(config.filename, "poem.txt");
-
-    Ok(())
-  }
-
-  #[test]
-  fn config_returns_message_with_invalid_arguments() -> Result<(), String> {
-    let args = vec![
-      String::from("test"),
-      String::from("minigrep"),
-      String::from("the"),
-    ];
-    let result = Config::new(args.as_slice());
-
-    assert!(result.is_err());
-
-    if let Err(err) = result {
-      assert_eq!(err, "not enough arguments");
-
-      return Ok(());
-    }
-
-    Err(String::from("not ok"))
-  }
-
-  #[test]
-  fn run_works_when_file_exists() -> Result<(), String> {
-    let config = Config {
-      case_sensitive: false,
-      filename: String::from("poem.txt"),
-      query: String::from(""),
-    };
-    let result = run(config);
-
-    assert!(result.is_ok());
-
-    Ok(())
-  }
-
-  #[test]
-  fn run_returns_message_when_file_doesnt_exist() -> Result<(), String> {
-    let config = Config {
-      case_sensitive: false,
-      filename: String::from(""),
-      query: String::from(""),
-    };
-    let result = run(config);
-
-    assert!(result.is_err());
-
-    if let Err(err) = result {
-      assert_eq!(err.to_string(), "entity not found");
-
-      return Ok(());
-    }
-
-    Err(String::from("not ok"))
-  }
 
   #[test]
   fn case_sensitive() {

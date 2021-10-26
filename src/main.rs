@@ -13,6 +13,7 @@ use std::env;
 enum Module {
   NoModuleArg,
   Minigrep,
+  Minigrep2,
 }
 
 fn get_module(args: &Vec<String>) -> Module {
@@ -22,6 +23,7 @@ fn get_module(args: &Vec<String>) -> Module {
 
   match args[1].as_str() {
     "minigrep" => Module::Minigrep,
+    "minigrep2" => Module::Minigrep2,
     _ => Module::NoModuleArg,
   }
 }
@@ -31,12 +33,12 @@ fn main() {
   let module_arg = get_module(&args);
 
   match module_arg {
-    Module::Minigrep => cap_12_minigrep::run(),
+    Module::Minigrep2 => cap_12_minigrep::run(),
+    Module::Minigrep => cap_13_03_improving_io::run(),
     Module::NoModuleArg => {
       cap_07_restaurant::run();
       cap_13_01_closures::run();
       cap_13_02_iterators::iterators::run();
-      cap_13_03_improving_io::run();
     }
   }
 }

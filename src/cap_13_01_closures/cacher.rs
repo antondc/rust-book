@@ -33,6 +33,7 @@ mod tests {
     fn my_function(num: u32) -> u32 {
       println!("Calculating slowly...");
       thread::sleep(Duration::from_secs(2));
+
       num
     }
 
@@ -42,6 +43,6 @@ mod tests {
     let v2 = c.value(2);
 
     assert_eq!(v1, 1);
-    assert_eq!(v2, 2);
+    assert_eq!(v2, 1);
   }
 }

@@ -9,15 +9,20 @@ pub struct Config {
 }
 
 impl Config {
-  pub fn new(args: &[String]) -> Result<Self, &'static str> {
-    if args.len() < 4 {
-      return Err("not enough arguments");
-    }
+  pub fn new(mut args: env::Args) -> Result<Config, &'static str> {
+    args.next();
+
+    let query = match args.next() {
+      Some(arg) => arg,
+      None => return Err("Didn't get a query string"),
+    };
+
+    let filename = match args.next() {
+      Some(arg) => arg,
+      None => return Err("Didn't get a file name"),
+    };
 
     let case_sensitive = env::var("CASE_INSENSITIVE").is_err();
-
-    let query = args[2].clone();
-    let filename = args[3].clone();
 
     Ok(Self {
       case_sensitive,
@@ -44,107 +49,22 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
 }
 
 pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
-  let mut results = Vec::new();
-
-  for line in contents.lines() {
-    if line.contains(query) {
-      results.push(line);
-    }
-  }
-
-  results
+  contents
+    .lines()
+    .filter(|line| line.contains(query))
+    .collect()
 }
 
 pub fn search_case_insensitive<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
-  let query = query.to_lowercase();
-  let mut results = Vec::new();
-
-  for line in contents.lines() {
-    if line.to_lowercase().contains(&query) {
-      results.push(line);
-    }
-  }
-
-  results
+  contents
+    .lines()
+    .filter(|line| line.to_lowercase().contains(&query.to_lowercase()))
+    .collect()
 }
 
 #[cfg(test)]
 mod tests {
   use super::*;
-
-  #[test]
-  fn config_returns_config_object() -> Result<(), String> {
-    let args = vec![
-      String::from("test"),
-      String::from("minigrep"),
-      String::from("the"),
-      String::from("poem.txt"),
-    ];
-    let result = Config::new(args.as_slice());
-
-    assert!(result.is_ok());
-
-    let config = result?;
-
-    assert_eq!(config.query, "the");
-    assert_eq!(config.filename, "poem.txt");
-
-    Ok(())
-  }
-
-  #[test]
-  fn config_returns_message_with_invalid_arguments() -> Result<(), String> {
-    let args = vec![
-      String::from("test"),
-      String::from("minigrep"),
-      String::from("the"),
-    ];
-    let result = Config::new(args.as_slice());
-
-    assert!(result.is_err());
-
-    if let Err(err) = result {
-      assert_eq!(err, "not enough arguments");
-
-      return Ok(());
-    }
-
-    Err(String::from("not ok"))
-  }
-
-  #[test]
-  fn run_works_when_file_exists() -> Result<(), String> {
-    let config = Config {
-      case_sensitive: false,
-      filename: String::from("poem.txt"),
-      query: String::from(""),
-    };
-    let result = run(config);
-
-    assert!(result.is_ok());
-
-    Ok(())
-  }
-
-  #[test]
-  fn run_returns_message_when_file_doesnt_exist() -> Result<(), String> {
-    let config = Config {
-      case_sensitive: false,
-      filename: String::from(""),
-      query: String::from(""),
-    };
-    let result = run(config);
-
-    assert!(result.is_err());
-
-    if let Err(err) = result {
-      assert_eq!(err.to_string(), "entity not found");
-
-      return Ok(());
-    }
-
-    Err(String::from("not ok"))
-  }
 
   #[test]
   fn case_sensitive() {
