@@ -28,19 +28,7 @@ impl Iterator for Counter {
   }
 }
 
-pub fn run() {
-  let v1 = vec![1, 2, 3];
-  let v1_iter = v1.iter();
 
-  for val in v1_iter {
-    println!("Got: {}", val);
-  }
-
-  let v1 = vec![1, 2, 3];
-  let v2: Vec<_> = v1.iter().map(|x| x + 1).collect();
-
-  assert_eq!(v2, vec![2, 3, 4]);
-}
 
 fn shoes_in_my_size(shoes: Vec<Shoe>, shoe_size: u32) -> Vec<Shoe> {
   shoes.into_iter().filter(|s| s.size == shoe_size).collect()

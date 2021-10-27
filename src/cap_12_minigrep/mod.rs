@@ -6,6 +6,8 @@ mod minigrep;
 use minigrep::Config;
 
 pub fn run() {
+  println!("\n•   cap_12_minigrep");
+
   let args: Vec<_> = env::args().collect();
 
   let config = Config::new(&args).unwrap_or_else(|err| {

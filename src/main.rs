@@ -8,7 +8,8 @@ mod cap_13_01_closures;
 mod cap_13_02_iterators;
 mod cap_13_03_improving_io;
 mod cap_14_01_cargo_crates;
-mod cap_15_01_smart_pointers;
+mod cap_15_01_smart_pointers_box;
+mod cap_15_02_smart_pointers_deref;
 
 use std::env;
 
@@ -40,9 +41,10 @@ fn main() {
     Module::NoModuleArg => {
       cap_07_restaurant::run();
       cap_13_01_closures::run();
-      cap_13_02_iterators::iterators::run();
+      cap_13_02_iterators::run();
       cap_14_01_cargo_crates::run();
-      cap_15_01_smart_pointers::run();
+      cap_15_01_smart_pointers_box::run();
+      cap_15_02_smart_pointers_deref::run();
     }
   }
 }

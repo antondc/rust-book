@@ -6,6 +6,7 @@ mod improving_io;
 use improving_io::Config;
 
 pub fn run() {
+  println!("\n• cap_13_03_improving_io-------");
   let args: env::Args = env::args();
 
   let config = Config::new(args).unwrap_or_else(|err| {
