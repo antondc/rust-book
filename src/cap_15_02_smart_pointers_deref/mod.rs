@@ -1,9 +1,9 @@
-mod cap_15_02_smart_pointers_deref;
-use cap_15_02_smart_pointers_deref::MyBox;
+mod my_box;
+use my_box::MyBox;
 pub mod hello;
 
 pub fn run() {
-  println!("\n• cap_15_02_smart_pointers_deref-------");
+  println!("-cap_15_02_smart_pointers_deref-------");
   let x = 5;
   let y = MyBox::new(x);
 

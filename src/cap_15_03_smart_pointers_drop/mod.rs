@@ -1,5 +1,5 @@
-mod cap_15_03_smart_pointers_drop;
-use cap_15_03_smart_pointers_drop::CustomSmartPointer;
+mod custom_smart_pointer;
+use custom_smart_pointer::CustomSmartPointer;
 
 pub fn run() {
   println!("\n• cap_15_03_smart_pointers_drop-------");

@@ -1,5 +1,5 @@
-mod cap_15_04_smart_pointers_reference_counted;
-use cap_15_04_smart_pointers_reference_counted::List::{Cons, Nil};
+mod list;
+use list::List::{Cons, Nil};
 use std::rc::Rc;
 
 pub fn run() {
