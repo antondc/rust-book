@@ -10,6 +10,7 @@ mod cap_13_03_improving_io;
 mod cap_14_01_cargo_crates;
 mod cap_15_01_smart_pointers_box;
 mod cap_15_02_smart_pointers_deref;
+mod cap_15_03_smart_pointers_drop;
 
 use std::env;
 
@@ -45,6 +46,7 @@ fn main() {
       cap_14_01_cargo_crates::run();
       cap_15_01_smart_pointers_box::run();
       cap_15_02_smart_pointers_deref::run();
+      cap_15_03_smart_pointers_drop::run();
     }
   }
 }
