@@ -10,3 +10,6 @@ license = "CC0: https://creativecommons.org/share-your-work/public-domain/cc0/"
 # Default conf, just for demostration
 [profile.dev]
 opt-level = 0
+
+[dependencies]
+add-one = { path = "./src/cap_14_01_cargo_crates/add-one" }

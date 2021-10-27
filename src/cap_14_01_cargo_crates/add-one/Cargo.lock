@@ -5,10 +5,3 @@ version = 3
 [[package]]
 name = "add-one"
 version = "0.1.0"
-
-[[package]]
-name = "rust-book-examples"
-version = "0.1.0"
-dependencies = [
- "add-one",
-]
