@@ -8,6 +8,7 @@ mod cap_13_01_closures;
 mod cap_13_02_iterators;
 mod cap_13_03_improving_io;
 mod cap_14_01_cargo_crates;
+mod cap_15_01_smart_pointers;
 
 use std::env;
 
@@ -41,6 +42,7 @@ fn main() {
       cap_13_01_closures::run();
       cap_13_02_iterators::iterators::run();
       cap_14_01_cargo_crates::run();
+      cap_15_01_smart_pointers::run();
     }
   }
 }
