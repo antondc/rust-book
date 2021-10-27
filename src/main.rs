@@ -7,6 +7,7 @@ mod cap_12_minigrep;
 mod cap_13_01_closures;
 mod cap_13_02_iterators;
 mod cap_13_03_improving_io;
+mod cap_14_01_cargo_crates;
 
 use std::env;
 
@@ -39,6 +40,7 @@ fn main() {
       cap_07_restaurant::run();
       cap_13_01_closures::run();
       cap_13_02_iterators::iterators::run();
+      cap_14_01_cargo_crates::run();
     }
   }
 }

@@ -3,3 +3,10 @@ name = "rust-book-examples"
 version = "0.1.0"
 authors = ["Antonio Diaz <hello@antoniodiaz.me>"]
 edition = "2018"
+description = "Exercises for Rust book"
+license = "CC0: https://creativecommons.org/share-your-work/public-domain/cc0/"
+
+
+# Default conf, just for demostration
+[profile.dev]
+opt-level = 0
