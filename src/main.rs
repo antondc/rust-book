@@ -11,6 +11,7 @@ mod cap_14_01_cargo_crates;
 mod cap_15_01_smart_pointers_box;
 mod cap_15_02_smart_pointers_deref;
 mod cap_15_03_smart_pointers_drop;
+mod cap_15_04_smart_pointers_reference_counted;
 
 use std::env;
 
@@ -47,6 +48,7 @@ fn main() {
       cap_15_01_smart_pointers_box::run();
       cap_15_02_smart_pointers_deref::run();
       cap_15_03_smart_pointers_drop::run();
+      cap_15_04_smart_pointers_reference_counted::run();
     }
   }
 }
