@@ -1,7 +1,7 @@
 pub mod iterators;
 
 pub fn run() {
-  println!("•   cap_13_02_iterators-------");
+  println!("\n•   cap_13_02_iterators");
   let v1 = vec![1, 2, 3];
   let v1_iter = v1.iter();
 

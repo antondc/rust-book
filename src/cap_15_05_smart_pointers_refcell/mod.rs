@@ -5,7 +5,7 @@ use std::cell::RefCell;
 use std::rc::Rc;
 
 pub fn run() {
-  println!("\n• cap_15_05_smart_pointers_refcell-------");
+  println!("\n• cap_15_05_smart_pointers_refcell");
 
   let value = Rc::new(RefCell::new(5));
 

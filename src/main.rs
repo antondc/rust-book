@@ -13,6 +13,7 @@ mod cap_15_02_smart_pointers_deref;
 mod cap_15_03_smart_pointers_drop;
 mod cap_15_04_smart_pointers_reference_counted;
 mod cap_15_05_smart_pointers_refcell;
+mod cap_15_06_smart_pointers_leaks;
 
 use std::env;
 
@@ -51,6 +52,7 @@ fn main() {
       cap_15_03_smart_pointers_drop::run();
       cap_15_04_smart_pointers_reference_counted::run();
       cap_15_05_smart_pointers_refcell::run();
+      cap_15_06_smart_pointers_leaks::run();
     }
   }
 }

@@ -3,7 +3,7 @@ use list::List::{Cons, Nil};
 use std::rc::Rc;
 
 pub fn run() {
-  println!("\n• cap_15_04_smart_pointers_reference_counted-------");
+  println!("\n• cap_15_04_smart_pointers_reference_counted");
 
   // One reference, Rc::strong_count of a will be 1
   let a = Rc::new(Cons(5, Rc::new(Cons(10, Rc::new(Nil)))));
