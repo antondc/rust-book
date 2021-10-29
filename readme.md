@@ -1,6 +1,6 @@
 # Rust Book - Exercises and examples
 
-Exercises and examples on the [https://doc.rust-lang.org/book](Rust Book):
+Exercises and examples on the [Rust Book](https://doc.rust-lang.org/book):
 
 ## Run
 
