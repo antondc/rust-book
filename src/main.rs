@@ -17,13 +17,14 @@ mod cap_15_06_smart_pointers_leaks;
 mod cap_16_01_concurrency_threads_simultaneously;
 mod cap_16_02_concurrency_messages;
 mod cap_16_03_concurrency_shared_state;
+mod cap_17_01_oop_encapsulation;
 
 use std::env;
 
 enum Module {
-  NoModuleArg,
   Minigrep,
   Minigrep2,
+  NoModuleArg,
 }
 
 fn get_module(args: &Vec<String>) -> Module {
@@ -59,6 +60,7 @@ fn main() {
       cap_16_01_concurrency_threads_simultaneously::run();
       cap_16_02_concurrency_messages::run();
       cap_16_03_concurrency_shared_state::run();
+      cap_17_01_oop_encapsulation::run();
     }
   }
 }
