@@ -18,6 +18,7 @@ mod cap_16_01_concurrency_threads_simultaneously;
 mod cap_16_02_concurrency_messages;
 mod cap_16_03_concurrency_shared_state;
 mod cap_17_01_oop_encapsulation;
+mod cap_17_02_traits_and_types;
 
 use std::env;
 
@@ -61,6 +62,7 @@ fn main() {
       cap_16_02_concurrency_messages::run();
       cap_16_03_concurrency_shared_state::run();
       cap_17_01_oop_encapsulation::run();
+      cap_17_02_traits_and_types::run();
     }
   }
 }
