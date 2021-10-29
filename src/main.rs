@@ -14,6 +14,7 @@ mod cap_15_03_smart_pointers_drop;
 mod cap_15_04_smart_pointers_reference_counted;
 mod cap_15_05_smart_pointers_refcell;
 mod cap_15_06_smart_pointers_leaks;
+mod cap_16_01_concurrency_threads_simultaneously;
 
 use std::env;
 
@@ -53,6 +54,7 @@ fn main() {
       cap_15_04_smart_pointers_reference_counted::run();
       cap_15_05_smart_pointers_refcell::run();
       cap_15_06_smart_pointers_leaks::run();
+      cap_16_01_concurrency_threads_simultaneously::run();
     }
   }
 }
