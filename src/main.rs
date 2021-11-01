@@ -1,4 +1,4 @@
-// # Rust Book exercises
+//  # Rust Book exercises
 
 #![allow(unused_variables, dead_code, unused_assignments)]
 
@@ -21,6 +21,7 @@ mod cap_17_01_oop_encapsulation;
 mod cap_17_02_oop_traits_and_types;
 mod cap_17_03_01_oop_state_pattern;
 mod cap_17_03_02_oop_states_as_types;
+mod cap_18_01_patterns_places;
 
 use std::env;
 
@@ -67,6 +68,7 @@ fn main() {
       cap_17_02_oop_traits_and_types::run();
       cap_17_03_01_oop_state_pattern::run();
       cap_17_03_02_oop_states_as_types::run();
+      cap_18_01_patterns_places::run();
     }
   }
 }
