@@ -39,4 +39,10 @@ impl Post {
       self.state = Some(state.approve())
     }
   }
+
+  pub fn reject(&mut self) {
+    if let Some(state) = self.state.take() {
+      self.state = Some(state.reject())
+    }
+  }
 }
