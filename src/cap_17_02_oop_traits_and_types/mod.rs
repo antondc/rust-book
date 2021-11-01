@@ -5,7 +5,7 @@ use components::{Button, SelectBox};
 use render::Screen;
 
 pub fn run() {
-  println!("\n• cap_17_02_traits_and_types");
+  println!("\n• cap_17_02_oop_traits_and_types");
 
   let screen = Screen {
     components: vec![
