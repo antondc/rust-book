@@ -1,4 +1,4 @@
-use super::draw::Draw;
+use super::super::types::Draw;
 
 pub struct Screen {
   pub components: Vec<Box<dyn Draw>>,

@@ -1,4 +1,4 @@
-use super::draw::Draw;
+use super::super::types::Draw;
 
 pub struct SelectBox {
   pub width: u32,

@@ -1,10 +1,8 @@
-mod button;
-mod draw;
-mod screen;
-mod select_box;
-use button::Button;
-use screen::Screen;
-use select_box::SelectBox;
+mod components;
+mod render;
+mod types;
+use components::{Button, SelectBox};
+use render::Screen;
 
 pub fn run() {
   println!("\n• cap_17_02_traits_and_types");
