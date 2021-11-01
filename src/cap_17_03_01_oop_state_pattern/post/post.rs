@@ -1,5 +1,6 @@
 use super::{Draft, State};
 
+// OOP State pattern
 // A post can be in one of three states: Draft, PendingReview or Published
 // These states are defined on post_states module
 // Post will be initialized as a Draft {}
