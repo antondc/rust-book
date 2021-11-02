@@ -17,7 +17,7 @@ pub fn run() {
     ];
     for val in vals {
       tx1.send(val).unwrap();
-      thread::sleep(Duration::from_secs(1));
+      thread::sleep(Duration::from_millis(10));
     }
   });
 
@@ -31,7 +31,7 @@ pub fn run() {
 
     for val in vals {
       tx.send(val).unwrap();
-      thread::sleep(Duration::from_secs(1));
+      thread::sleep(Duration::from_millis(10));
     }
   });
 

@@ -6,7 +6,7 @@ pub fn run() {
   let handle = thread::spawn(|| {
     for i in 1..10 {
       println!("hi number {} from the spawned thread!", i);
-      thread::sleep(Duration::from_millis(100));
+      thread::sleep(Duration::from_millis(10));
     }
   });
 
@@ -15,7 +15,7 @@ pub fn run() {
 
   for i in 1..5 {
     println!("hi number {} from the main thread!", i);
-    thread::sleep(Duration::from_millis(100));
+    thread::sleep(Duration::from_millis(10));
   }
 
   handle.join().unwrap();

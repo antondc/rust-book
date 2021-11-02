@@ -32,7 +32,7 @@ mod tests {
   fn call_with_different_values() {
     fn my_function(num: u32) -> u32 {
       println!("Calculating slowly...");
-      thread::sleep(Duration::from_secs(2));
+      thread::sleep(Duration::from_millis(100));
 
       num
     }
