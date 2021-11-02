@@ -25,6 +25,7 @@ mod cap_18_01_patterns_places;
 mod cap_18_02_patterns_refutability;
 mod cap_18_03_pattern_syntax;
 mod cap_19_01_unsafe_rust;
+mod cap_19_02_advanced_traits;
 
 use std::env;
 
@@ -75,6 +76,7 @@ fn main() {
       cap_18_02_patterns_refutability::run();
       cap_18_03_pattern_syntax::run();
       cap_19_01_unsafe_rust::run();
+      cap_19_02_advanced_traits::run();
     }
   }
 }
