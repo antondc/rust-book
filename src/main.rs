@@ -24,6 +24,7 @@ mod cap_17_03_02_oop_states_as_types;
 mod cap_18_01_patterns_places;
 mod cap_18_02_patterns_refutability;
 mod cap_18_03_pattern_syntax;
+mod cap_19_01_unsafe_rust;
 
 use std::env;
 
@@ -73,6 +74,7 @@ fn main() {
       cap_18_01_patterns_places::run();
       cap_18_02_patterns_refutability::run();
       cap_18_03_pattern_syntax::run();
+      cap_19_01_unsafe_rust::run();
     }
   }
 }
