@@ -1,5 +1,5 @@
 [package]
-name = "rust-book-examples"
+name = "rust_book_examples"
 version = "0.1.0"
 authors = ["Antonio Diaz <hello@antoniodiaz.me>"]
 edition = "2018"
@@ -13,3 +13,5 @@ opt-level = 0
 
 [dependencies]
 add-one = { path = "./src/cap_14_01_cargo_crates/add-one" }
+hello_macro = { path = "hello_macro" }
+hello_macro_derive = { path = "hello_macro_derive" }

@@ -28,6 +28,7 @@ mod cap_19_01_unsafe_rust;
 mod cap_19_02_advanced_traits;
 mod cap_19_03_advanced_types;
 mod cap_19_04_advanced_functions;
+mod cap_19_05_macros;
 
 use std::env;
 
@@ -81,6 +82,7 @@ fn main() {
       cap_19_02_advanced_traits::run();
       cap_19_03_advanced_types::run();
       cap_19_04_advanced_functions::run();
+      cap_19_05_macros::run();
     }
   }
 }
