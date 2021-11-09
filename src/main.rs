@@ -51,7 +51,7 @@ fn get_module(args: &Vec<String>) -> Module {
     "minigrep" => Module::Minigrep,
     "minigrep2" => Module::Minigrep2,
     "web_server_single" => Module::WebServerSingle,
-    "web_server_multi" => Module::WebServerMulti,
+    "web_server_multi_threaded" => Module::WebServerMulti,
     _ => Module::NoModuleArg,
   }
 }

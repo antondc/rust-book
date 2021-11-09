@@ -1,4 +1,6 @@
+mod job;
 mod threadpool;
-mod threadpool_error;
+mod worker;
+pub use super::errors::ThreadPoolError;
+pub use job::Job;
 pub use threadpool::ThreadPool;
-pub use threadpool_error::ThreadPoolError;

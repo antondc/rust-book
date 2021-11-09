@@ -1,5 +1,7 @@
+pub mod errors;
 mod threadpool;
 
+pub use errors::ThreadPoolError;
 use std::fs;
 use std::io::prelude::*;
 use std::net::{TcpListener, TcpStream};
@@ -7,8 +9,8 @@ use std::thread;
 use std::time::Duration;
 use threadpool::ThreadPool;
 
-const HELLO_PATH: &str = "src/cap_20_01_web_server_single_threaded/views/hello.html";
-const NOT_FOUND_PATH: &str = "src/cap_20_01_web_server_single_threaded/views/NOT_FOUND_PATH.html";
+const HELLO_PATH: &str = "src/cap_20_02_web_server_multi_threaded/views/hello.html";
+const NOT_FOUND_PATH: &str = "src/cap_20_02_web_server_multi_threaded/views/NOT_FOUND_PATH.html";
 
 fn handle_stream(mut stream: TcpStream) {
   let mut buffer = [0; 1024];

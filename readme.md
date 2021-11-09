@@ -24,4 +24,4 @@ Output will be saved at output.txt, as per `> output.txt`
 
 ### Cap 20.02
 
-    cargo run web_server_multi
+    cargo run web_server_multi_threaded

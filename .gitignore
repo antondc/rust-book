@@ -8,3 +8,5 @@
 
 # Ignore output test files
 output.txt
+
+.DS_Store
