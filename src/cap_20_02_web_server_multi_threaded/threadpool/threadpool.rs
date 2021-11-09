@@ -1,6 +1,6 @@
 use super::worker::Worker;
 use super::Message;
-pub use super::ThreadPoolError;
+use std::fmt;
 use std::sync::mpsc;
 use std::sync::Arc;
 use std::sync::Mutex;
@@ -23,24 +23,29 @@ impl ThreadPool {
       let error = ThreadPoolError(String::from("ERROR: thread pool size not valid"));
       return Err(error);
     }
-    let (sender, receiver) = mpsc::channel();
-    let receiver = Arc::new(Mutex::new(receiver));
-    let mut workers = Vec::with_capacity(size);
 
+    let (sender, receiver) = mpsc::channel(); // Create sender and received from channel
+    let receiver = Arc::new(Mutex::new(receiver)); // Reference (Arc) that wont conflict between threads (Mutex)
+    let mut workers = Vec::with_capacity(size); // Vector where we will store the workers
+
+    // Iterate size to store workers in `workers` vector
+    // Each worker instance will hold a reference to the receiver
     for id in 0..size {
       let cloned_receiver = Arc::clone(&receiver);
-      workers.push(Worker::new(id, cloned_receiver));
+      let worker = Worker::new(id, cloned_receiver);
+
+      workers.push(worker); // Set workers in place at `ThreadPool.workers` waiting for tasks
     }
 
     Ok(ThreadPool { workers, sender })
   }
 
-  pub fn execute<F>(&self, f: F)
+  pub fn execute<F>(&self, incoming_task: F)
   where
     F: FnOnce() + Send + 'static,
   {
-    let job = Box::new(f);
-    self.sender.send(Message::NewJob(job)).unwrap();
+    let task = Box::new(incoming_task);
+    self.sender.send(Message::NewTask(task)).unwrap(); // Send a new task to the workers
   }
 }
 
@@ -61,5 +66,13 @@ impl Drop for ThreadPool {
         thread.join().unwrap();
       }
     }
+  }
+}
+
+pub struct ThreadPoolError(pub String);
+
+impl fmt::Debug for ThreadPoolError {
+  fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+    write!(f, "{:?}", self.0)
   }
 }

@@ -1,45 +1,16 @@
-pub mod errors;
-mod threadpool;
-
-pub use errors::ThreadPoolError;
-use std::fs;
-use std::io::prelude::*;
-use std::net::{TcpListener, TcpStream};
-use std::thread;
-use std::time::Duration;
+mod handle_stream;
+pub mod threadpool;
+use handle_stream::handle_stream;
+use std::net::TcpListener;
 use threadpool::ThreadPool;
 
-const HELLO_PATH: &str = "src/cap_20_02_web_server_multi_threaded/views/hello.html";
-const NOT_FOUND_PATH: &str = "src/cap_20_02_web_server_multi_threaded/views/NOT_FOUND_PATH.html";
+const ITERATIONS: usize = 3;
 
-fn handle_stream(mut stream: TcpStream) {
-  let mut buffer = [0; 1024];
-  stream.read(&mut buffer).unwrap();
-
-  let get = b"GET / HTTP/1.1\r\n";
-  let sleep = b"GET /sleep HTTP/1.1\r\n";
-
-  let (status_line, filename) = if buffer.starts_with(get) {
-    ("HTTP/1.1 200 OK", HELLO_PATH)
-  } else if buffer.starts_with(sleep) {
-    thread::sleep(Duration::from_secs(2));
-    ("HTTP/1.1 200 OK", HELLO_PATH)
-  } else {
-    ("HTTP/1.1 404 NOT FOUND", NOT_FOUND_PATH)
-  };
-
-  let contents = fs::read_to_string(filename).unwrap();
-  let response = format!(
-    "{}\r\nContent-Length: {}\r\n\r\n{}",
-    status_line,
-    contents.len(),
-    contents
-  );
-
-  stream.write(response.as_bytes()).unwrap();
-  stream.flush().unwrap();
-}
-
+/// # Multi threading server
+///
+/// http server able to handle a specific number of tasks asynchronously.
+/// Important components are `ThreadPool`, `Workers`, `Tasks` and `Messages`.
+///
 pub fn run() {
   println!("\n• cap_20_02_web_server_multi_threaded");
 
@@ -47,11 +18,13 @@ pub fn run() {
   let thread_pool = ThreadPool::new(4);
 
   match thread_pool {
-    Ok(pool) => {
-      for stream in listener.incoming().take(3) {
-        let stream = stream.unwrap();
+    Ok(thread_pool_received) => {
+      // Idle, listening for tasks
+      // Will break after `ITERATIONS` cicles, quiting program
+      for stream in listener.incoming().take(ITERATIONS) {
+        let stream = stream.unwrap(); // Some actual task coming
 
-        pool.execute(|| {
+        thread_pool_received.execute(|| {
           handle_stream(stream);
         });
       }

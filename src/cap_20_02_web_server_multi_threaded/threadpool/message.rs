@@ -1,6 +1,6 @@
-use super::Job;
+use super::Task;
 
 pub enum Message {
-  NewJob(Job),
+  NewTask(Task),
   Terminate,
 }

@@ -4,6 +4,8 @@ use std::sync::Arc;
 use std::sync::Mutex;
 use std::thread;
 
+/// Handles tasks
+///
 pub struct Worker {
   pub id: usize,
   pub thread: Option<thread::JoinHandle<()>>,
@@ -12,13 +14,15 @@ pub struct Worker {
 impl Worker {
   pub fn new(id: usize, receiver: Arc<Mutex<Receiver<Message>>>) -> Worker {
     let thread = thread::spawn(move || loop {
+      // Listen for tasks, idles here
       let message = receiver.lock().unwrap().recv().unwrap();
 
+      // Task received, check if its a task or terminate command
       match message {
-        Message::NewJob(job) => {
-          println!("Worker {} got a job; executing.", id);
+        Message::NewTask(task) => {
+          println!("Worker {} got a task; executing.", id);
 
-          job();
+          task(); // Execute actual task
         }
         Message::Terminate => {
           println!("Worker {} was told to terminate.", id);
