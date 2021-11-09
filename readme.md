@@ -21,3 +21,7 @@ Output will be saved at output.txt, as per `> output.txt`
 ### Cap 20.01
 
     cargo run web_server_single
+
+### Cap 20.02
+
+    cargo run web_server_multi

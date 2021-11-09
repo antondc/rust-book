@@ -30,6 +30,7 @@ mod cap_19_03_advanced_types;
 mod cap_19_04_advanced_functions;
 mod cap_19_05_macros;
 mod cap_20_01_web_server_single_threaded;
+mod cap_20_02_web_server_multi_threaded;
 
 use std::env;
 
@@ -37,6 +38,7 @@ enum Module {
   Minigrep,
   Minigrep2,
   WebServerSingle,
+  WebServerMulti,
   NoModuleArg,
 }
 
@@ -49,6 +51,7 @@ fn get_module(args: &Vec<String>) -> Module {
     "minigrep" => Module::Minigrep,
     "minigrep2" => Module::Minigrep2,
     "web_server_single" => Module::WebServerSingle,
+    "web_server_multi" => Module::WebServerMulti,
     _ => Module::NoModuleArg,
   }
 }
@@ -61,6 +64,7 @@ fn main() {
     Module::Minigrep2 => cap_12_io_program_minigrep::run(),
     Module::Minigrep => cap_13_03_improving_io::run(),
     Module::WebServerSingle => cap_20_01_web_server_single_threaded::run(),
+    Module::WebServerMulti => cap_20_02_web_server_multi_threaded::run(),
     Module::NoModuleArg => {
       cap_07_packages_crates_modules::run();
       cap_13_01_closures::run();
