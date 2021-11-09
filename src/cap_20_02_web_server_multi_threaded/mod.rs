@@ -22,7 +22,7 @@ fn handle_stream(mut stream: TcpStream) {
   let (status_line, filename) = if buffer.starts_with(get) {
     ("HTTP/1.1 200 OK", HELLO_PATH)
   } else if buffer.starts_with(sleep) {
-    thread::sleep(Duration::from_secs(5));
+    thread::sleep(Duration::from_secs(2));
     ("HTTP/1.1 200 OK", HELLO_PATH)
   } else {
     ("HTTP/1.1 404 NOT FOUND", NOT_FOUND_PATH)
@@ -48,7 +48,7 @@ pub fn run() {
 
   match thread_pool {
     Ok(pool) => {
-      for stream in listener.incoming() {
+      for stream in listener.incoming().take(3) {
         let stream = stream.unwrap();
 
         pool.execute(|| {

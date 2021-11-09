@@ -1,27 +1,36 @@
-use super::Job;
+use super::Message;
 use std::sync::mpsc::Receiver;
 use std::sync::Arc;
 use std::sync::Mutex;
 use std::thread;
 
 pub struct Worker {
-  id: usize,
-  thread: thread::JoinHandle<()>,
+  pub id: usize,
+  pub thread: Option<thread::JoinHandle<()>>,
 }
 
 impl Worker {
-  pub fn new(id: usize, receiver: Arc<Mutex<Receiver<Job>>>) -> Worker {
+  pub fn new(id: usize, receiver: Arc<Mutex<Receiver<Message>>>) -> Worker {
     let thread = thread::spawn(move || loop {
-      let job = receiver
-        .lock()
-        .expect("ERROR: something failed while processing the request")
-        .recv()
-        .unwrap();
-      println!("{}", id);
+      let message = receiver.lock().unwrap().recv().unwrap();
 
-      job();
+      match message {
+        Message::NewJob(job) => {
+          println!("Worker {} got a job; executing.", id);
+
+          job();
+        }
+        Message::Terminate => {
+          println!("Worker {} was told to terminate.", id);
+
+          break;
+        }
+      }
     });
 
-    Worker { id, thread }
+    Worker {
+      id,
+      thread: Some(thread),
+    }
   }
 }
